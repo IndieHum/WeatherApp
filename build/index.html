@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link
+            rel="shortcut icon"
+            href="img/icons8-partly-cloudy-day-96.png"
+            type="image/x-icon"
+        />
+        <title>Weather App</title>
+    </head>
+    <body class="bg-slate-400 max-w-4xl flex flex-col justify-center mx-auto">
+        <header
+            class="bg-lime-500 rounded-b-3xl flex justify-center items-center p-8 pb-28 shadow-xl"
+        >
+            <img
+                src="./img/location.png"
+                alt="location png"
+                id="location-buttom"
+                class="hover:scale-110 transition-all cursor-pointer"
+            />
+            <input
+                type="text"
+                name="search"
+                id="search-input"
+                class="p-4 text-2xl w-6/12 focus:outline-none text-center rounded-xl shadow-xl"
+            />
+            <button id="search" class="bg-lime-300">Search</button>
+        </header>
+        <main class="main-position shadow-xl">
+            <div id="weather" class="bg-white w-72 h-72 rounded-xl"></div>
+        </main>
+        <footer>
+            <div id="forecast"></div>
+        </footer>
+    </body>
+</html>
