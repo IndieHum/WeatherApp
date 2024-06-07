@@ -18,7 +18,7 @@
             <img
                 src="./img/location.png"
                 alt="location png"
-                id="location-buttom"
+                id="location-button"
                 class="hover:scale-110 transition-all cursor-pointer"
             />
             <input
@@ -38,7 +38,12 @@
             <div
                 id="weather"
                 class="bg-white w-96 h-44 rounded-xl flex flex-col justify-center items-center p-4 gap-4 text-xl"
-            ></div>
+            >
+                <span
+                    id="loader"
+                    class="w-36 h-36 border-8 border-blue-900 border-x-transparent rounded-full animate-spin"
+                ></span>
+            </div>
         </main>
         <footer>
             <div id="forecast" class="flex mt-44 w-full justify-between"></div>

@@ -1,9 +1,11 @@
-import { FetchForecastData, FetchWeatherData } from "./httpReq.js";
+import { FetchData } from "./httpReq.js";
 
 const SearchButton = document.getElementById("search");
 const SearchInput = document.getElementById("search-input");
 const WeatherContainer = document.getElementById("weather");
 const ForecastContainer = document.getElementById("forecast");
+const LoctionButton = document.getElementById("location-button");
+const Loader = document.getElementById("loader"); // UnDone!
 
 const DAYS = [
     "Sunday",
@@ -60,11 +62,32 @@ async function GetUserData() {
     const CityName = SearchInput.value || "tehran";
     if (!CityName) alert("wrong input");
 
-    const WrittenCityNameWeather = await FetchWeatherData(CityName);
+    WeatherContainer.innerHTML + Loader; // !!!!!!
+
+    const WrittenCityNameWeather = await FetchData("current", CityName);
     RenderWeatherData(WrittenCityNameWeather);
-    const WrittenCityNameForecast = await FetchForecastData(CityName);
+    const WrittenCityNameForecast = await FetchData("forecast", CityName);
     RenderForecastData(WrittenCityNameForecast);
+}
+
+async function PositionCallBack(position) {
+    SearchInput.value = "";
+    console.log(position);
+    const WrittenCityNameWeather = await FetchData("current", position.coords);
+    RenderWeatherData(WrittenCityNameWeather);
+    const WrittenCityNameForecast = await FetchData(
+        "forecast",
+        position.coords
+    );
+    RenderForecastData(WrittenCityNameForecast);
+}
+
+function GetUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(PositionCallBack);
+    } else alert("Not Support");
 }
 
 document.addEventListener("DOMContentLoaded", GetUserData);
 SearchButton.addEventListener("click", GetUserData);
+LoctionButton.addEventListener("click", GetUserLocation);
