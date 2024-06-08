@@ -1,10 +1,12 @@
 import { FetchData } from "./httpReq.js";
+import { CloseModal, ShowModal } from "./modal.js";
 
 const SearchButton = document.getElementById("search");
 const SearchInput = document.getElementById("search-input");
 const WeatherContainer = document.getElementById("weather");
 const ForecastContainer = document.getElementById("forecast");
 const LoctionButton = document.getElementById("location-button");
+const DialogButton = document.getElementById("dialog-button");
 const Loader = document.getElementById("loader"); // UnDone!
 
 const DAYS = [
@@ -19,6 +21,7 @@ const DAYS = [
 
 function RenderWeatherData(data) {
     console.log(data);
+    if (!data) return;
     WeatherContainer.innerHTML = "";
     const weatherJSX = `
         <div class="text-3xl">${data.name} ,${data.sys.country}</div>
@@ -38,6 +41,7 @@ function RenderWeatherData(data) {
 }
 
 function RenderForecastData(data) {
+    if (!data) return;
     ForecastContainer.innerHTML = "";
     const FutureDays = data.list.filter((obj) =>
         obj.dt_txt.endsWith("00:00:00")
@@ -60,9 +64,7 @@ function RenderForecastData(data) {
 
 async function GetUserData() {
     const CityName = SearchInput.value || "tehran";
-    if (!CityName) alert("wrong input");
-
-    WeatherContainer.innerHTML + Loader; // !!!!!!
+    if (!CityName) ShowModal("wrong input");
 
     const WrittenCityNameWeather = await FetchData("current", CityName);
     RenderWeatherData(WrittenCityNameWeather);
@@ -85,9 +87,12 @@ async function PositionCallBack(position) {
 function GetUserLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(PositionCallBack);
-    } else alert("Not Support");
+    } else ShowModal("Your browser does not support this feature");
 }
+
+SearchInput.value = ""; // !!!!!
 
 document.addEventListener("DOMContentLoaded", GetUserData);
 SearchButton.addEventListener("click", GetUserData);
 LoctionButton.addEventListener("click", GetUserLocation);
+DialogButton.addEventListener("click", CloseModal);

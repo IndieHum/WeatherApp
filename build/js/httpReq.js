@@ -1,3 +1,5 @@
+import { ShowModal } from "./modal.js";
+
 const BASE_URL = "https://api.openweathermap.org/data/2.5/";
 const API_KEY = "791cc74debf5e427b88833f3c7733835";
 
@@ -26,10 +28,10 @@ async function FetchData(type, data) {
         if (+Json.cod == "200") {
             return Json;
         } else {
-            alert(Json.message);
+            ShowModal(Json.message);
         }
     } catch (error) {
-        alert(error);
+        ShowModal(error);
     }
 }
 

@@ -12,6 +12,13 @@
         <title>Weather App</title>
     </head>
     <body class="bg-slate-400 max-w-4xl flex flex-col justify-center mx-auto">
+        <dialog class="modal backdrop:bg-slate-500 backdrop:opacity-50">
+            <button id="dialog-button" class="bg-green-500 rounded-lg p-1">
+                &#10005;
+            </button>
+            <p></p>
+        </dialog>
+
         <header
             class="bg-lime-500 rounded-b-3xl flex justify-center items-center p-8 pb-28 shadow-xl"
         >
@@ -34,6 +41,7 @@
                 Search
             </button>
         </header>
+
         <main class="main-position shadow-xl">
             <div
                 id="weather"
@@ -45,6 +53,7 @@
                 ></span>
             </div>
         </main>
+
         <footer>
             <div id="forecast" class="flex mt-44 w-full justify-between"></div>
         </footer>
