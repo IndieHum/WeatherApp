@@ -49,7 +49,7 @@ function RenderForecastData(data) {
     console.log(FutureDays);
     FutureDays.forEach((i) => {
         const forecastJSX = `
-            <div class="bg-white rounded-xl flex items-center flex-col text-xl w-1/5 mx-2 py-4 shadow-2xl">
+            <div class="bg-white rounded-xl flex items-center flex-col text-xl w-1/5 mx-2 py-4 shadow-2xl max-[425px]:border">
                 <img src="https://openweathermap.org/img/w/${
                     i.weather[0].icon
                 }.png" />

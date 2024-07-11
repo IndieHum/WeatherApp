@@ -16,6 +16,12 @@
     left: calc(50% - 192px);
 }
 
+@media (max-width: 425px) {
+    .main-position {
+        left: calc(50% - 170px);
+    }
+}
+
 .modal[open] {
     display: flex;
     align-items: center;
